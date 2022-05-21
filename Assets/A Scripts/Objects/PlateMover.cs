@@ -15,7 +15,7 @@ public class PlateMover : MonoBehaviour
     {
         if (other.tag == "PlateOrigin")
         {
-            print("trigger plate");
+            //print("trigger plate");
             transform.localPosition = transform.localPosition - (intervalVektor);
         }
     }

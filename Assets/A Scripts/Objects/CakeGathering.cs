@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CakeGathering : MonoBehaviour
 {
+    [SerializeField] private Transform stackParent;
     
     private int collectedCakeNumber = 0;
 
@@ -15,9 +16,11 @@ public class CakeGathering : MonoBehaviour
         if (other.CompareTag("Cake"))// && !other.GetComponent<Cake>().IsCollected
         {
             //other.GetComponent<Cake>().IsCollected = true;
-            other.transform.parent = transform;
+            other.transform.parent = stackParent;
             other.transform.localPosition = localCakeCollectionPosition + (intervalBetweenCollectedCakes * collectedCakeNumber);
             collectedCakeNumber++;
+
+            Cake.OnInteract?.Invoke(true, other.transform);
         }
     }
 }

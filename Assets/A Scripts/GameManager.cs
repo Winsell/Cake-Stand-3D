@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static int cakeType;
+    private static CakeType cakeType;
 
-    public static int CakeType { get => cakeType; set => cakeType = value; }
+    public static CakeType CakeType { get => cakeType; set => cakeType = value; }
 }

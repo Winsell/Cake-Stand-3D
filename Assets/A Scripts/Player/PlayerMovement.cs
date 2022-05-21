@@ -24,9 +24,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public static PlayerMovement instance;
+    private Rigidbody _rigidbody;
+
     private void Awake()
     {
         Singelton();
+
+        _rigidbody = GetComponent<Rigidbody>();
     }
     private void Singelton()
     {
@@ -50,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
     private void MoveForward()
     {
         transform.Translate(movementDirection * Time.deltaTime * forwardSpeed);
+
+        //Vector3 offset = Vector3.forward * (forwardSpeed * Time.deltaTime);
+        //_rigidbody.MovePosition(_rigidbody.position + offset);
     }
     private void HandleSideMovement()
     {

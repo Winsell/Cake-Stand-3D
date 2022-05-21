@@ -2,15 +2,22 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LPWaterMobile
   m_Shader: {fileID: 4800000, guid: 8165be4dd0b12774d80426d906df9c38, type: 3}
-  m_ShaderKeywords: LPW_FOAM _DISTORT_ON _EDGEBLEND_ON _EMISSION _SHADING_FLAT _WAVES_LOWQUALITY
-    _ZWRITE_ON
+  m_ValidKeywords:
+  - LPW_FOAM
+  - _DISTORT_ON
+  m_InvalidKeywords:
+  - _EDGEBLEND_ON
+  - _EMISSION
+  - _SHADING_FLAT
+  - _WAVES_LOWQUALITY
+  - _ZWRITE_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -41,6 +48,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _Absorption: 10
     - _BumpScale: 35
@@ -95,5 +103,6 @@ Material:
     - _FresColor: {r: 0, g: 0.75, b: 1, a: 1}
     - _ShoreColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.7735849, g: 0.62111956, b: 0.07662869, a: 1}
-    - _Sun: {r: 0.3519667, g: 0.76604444, b: -0.5378619, a: 0}
-    - _SunColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Sun: {r: 0.07495648, g: 0.99718523, b: 0.0018319786, a: 0}
+    - _SunColor: {r: 0.9811321, g: 0.94015753, b: 0.8284087, a: 1}
+  m_BuildTextureStacks: []

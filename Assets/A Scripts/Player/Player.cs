@@ -8,13 +8,13 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Choco"))
         {
-            GameManager.CakeType = 0;
-            print("chaco");
+            GameManager.CakeType = CakeType.Choco;
+            //print("chaco");
         }
         else if(other.CompareTag("Fruit"))
         {
-            GameManager.CakeType = 1;
-            print("fruþe");
+            GameManager.CakeType = CakeType.Fruit;
+            //print("fruþe");
         }
     }
 }
