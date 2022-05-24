@@ -4,33 +4,39 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private bool isPlaying = false;
+    [SerializeField] private static bool isPlaying = false;
 
     [Header("Movement")]
     [SerializeField] private Vector3 movementDirection;
     [SerializeField] private float forwardSpeed;
+    [SerializeField] private float backwardSpeed = 5;
     [SerializeField] private float swerveSpeed;
     //[SerializeField] private Transform sideMovementRoot;
     [SerializeField] private float sideMovementLimit;
 
 
     private float lastFrameFingerPositionX;
-    private float moveFactorX;   
+    private float moveFactorX;
 
-    public bool IsPlaying
+    private static Screens gameState;
+    public static bool IsPlaying
     {
-        get { return isPlaying; }
-        set { isPlaying = value; }
+        get { return isPlaying; } set { isPlaying = value; }
     }
 
-    public static PlayerMovement instance;
-    private Rigidbody _rigidbody;
+    public static Screens GameState { get => gameState; set => gameState = value; }
 
+    public static PlayerMovement instance;
+    private Rigidbody rigidbody;
+
+    private bool isMovingForward = true;
     private void Awake()
     {
         Singelton();
 
-        _rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
+
+        GameState = Screens.MainMenu;
     }
     private void Singelton()
     {
@@ -45,18 +51,33 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (isPlaying)
+        if (gameState == Screens.InGame)
         {
-            MoveForward();           
             HandleSideMovement();
+            if (isMovingForward)
+            MoveForward();                      
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            isMovingForward = false;
+            rigidbody.AddForce(Vector3.back * backwardSpeed, ForceMode.VelocityChange);
+            StartCoroutine(ResetVelocity());
+        }
+    }
+    IEnumerator ResetVelocity()
+    {
+        yield return new WaitForSeconds(0.3f);
+        rigidbody.velocity = Vector3.zero;
+        isMovingForward = true;
+    }
+    
     private void MoveForward()
     {
-        transform.Translate(movementDirection * Time.deltaTime * forwardSpeed);
-
-        //Vector3 offset = Vector3.forward * (forwardSpeed * Time.deltaTime);
-        //_rigidbody.MovePosition(_rigidbody.position + offset);
+        transform.Translate(movementDirection * Time.deltaTime * forwardSpeed);        
     }
     private void HandleSideMovement()
     {

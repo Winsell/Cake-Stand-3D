@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61993ad5c2b1da4b96e0ae9e62d98ec, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: 
-  collectibleCakePositions: []
-  otherObjectsPositions: []
+  collectibleCakePositions:
+  - {x: 1, y: 0, z: 22}
+  - {x: -2, y: 0, z: 19}
+  - {x: 3, y: 0, z: 28}
+  - {x: 3, y: 0, z: 30}
+  - {x: -3, y: 0, z: 35}
+  - {x: -3, y: 0, z: 32}
+  - {x: 3, y: 0, z: 32}
+  - {x: 0, y: 0, z: 48}
+  otherObjectsPositions:
+  - {x: -1.4, y: -1, z: 59}

@@ -45,10 +45,10 @@ GameObject:
   - component: {fileID: 5332960657282121164}
   - component: {fileID: 7594462372093519494}
   - component: {fileID: 3447736029600771759}
-  - component: {fileID: 3447736029600771760}
+  - component: {fileID: 1989781106472824185}
   m_Layer: 0
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: FirstConvertor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,20 +131,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2693405, y: 11.662346, z: 3.985312}
   m_Center: {x: -0.000002413989, y: 2.3444135, z: 0.63915926}
---- !u!114 &3447736029600771760
-MonoBehaviour:
+--- !u!54 &1989781106472824185
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3447736029600771761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7985583a494cd94ab6d2fc960cea7c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chocolateCake: {fileID: 0}
-  typeOfCakeToTransform: 1
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5074413779685995896
 GameObject:
   m_ObjectHideFlags: 0

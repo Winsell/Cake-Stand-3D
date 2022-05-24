@@ -7,9 +7,11 @@ TagManager:
   - Cake
   - Choco
   - Fruit
-  - CakeConvertor
   - PlateOrigin
   - SellTrigger
+  - Obstacle
+  - FirstConvertor
+  - SecondConvertor
   layers:
   - Default
   - TransparentFX

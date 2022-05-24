@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class StackController : MonoBehaviour
 {
+    public static StackController instance;
+
     [SerializeField] private Transform _pickUpParent;
     [SerializeField] private float _spaceBetweenNodes;
+    [SerializeField] private Vector3 localCakeCollectionStartPosition;
     [SerializeField] private float _lerpDuration;
 
     private Transform _stackParent;
@@ -18,6 +21,8 @@ public class StackController : MonoBehaviour
         _stack.Add(_playerTransform);
 
         Cake.OnInteract += UpdateStack;
+
+        Singelton();
     }
 
     private void Update()
@@ -30,6 +35,17 @@ public class StackController : MonoBehaviour
     {
         WaveNodes();
     }
+    private void Singelton()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void WaveNodes()
     {
@@ -37,10 +53,10 @@ public class StackController : MonoBehaviour
         {
             Vector3 nodePosition = _stack[i].localPosition;
             Vector3 previousNodePosition = _stack[i - 1].localPosition;
-            nodePosition = new Vector3(
+            nodePosition = localCakeCollectionStartPosition + new Vector3(
                 Mathf.Lerp(nodePosition.x, previousNodePosition.x, Time.deltaTime * _lerpDuration),
                 nodePosition.y,
-                nodePosition.z);// i * _spaceBetweenNodes
+                i * _spaceBetweenNodes);// i * _spaceBetweenNodes
 
             _stack[i].localPosition = nodePosition;
         }
@@ -58,7 +74,20 @@ public class StackController : MonoBehaviour
         {
             _stack.Remove(node);
             node.SetParent(_pickUpParent);
+            print("node removed from the stack");
         }
+    }
+    public void ClearStack()
+    {
+        int stackLenght = _stack.Count;
+        for (int i = 1; i < stackLenght; i++)
+        {
+            _stack[i].gameObject.GetComponent<Cake>().ReturnToObjectPool();
+            _stack[i].SetParent(_pickUpParent);      
+            print("clear stack:"+i);
+        }
+        _stack.Clear();
+        _stack.Add(_playerTransform);
     }
 }
 

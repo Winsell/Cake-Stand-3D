@@ -19,55 +19,69 @@ public class Cake : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("CakeConvertor"))//&& !IsTurnedFalse && other.GetComponent<Cake>().CakeType == typeOfCakeToTransform
+        if (other.CompareTag("FirstConvertor"))//&& !IsTurnedFalse && other.GetComponent<Cake>().CakeType == typeOfCakeToTransform
         {
-            ConvertCake();
+            DeactivateCake(cakeForm);
+            ConvertToSecondForm();
+            ActivateCake(cakeForm);
+        }
+        else if (other.CompareTag("SecondConvertor"))
+        {
+            DeactivateCake(cakeForm);
+            ConvertToThirdFrom();
+            ActivateCake(cakeForm);
         }
         if (other.CompareTag("SellTrigger"))
         {
-            gameObject.SetActive(false);
-            OnInteract?.Invoke(false, transform);//RemoveFromStack();
-            //Sell process
+            ReturnToObjectPool();
+            OnInteract?.Invoke(false, transform);//RemoveFromStack; 
+            // todo: Sell process
+        }
+        if (other.CompareTag("Obstacle"))
+        {
+            ReturnToObjectPool();
+            OnInteract?.Invoke(false, transform);//RemoveFromStack; 
         }
     }
-    /*
-    public void Interact()
+    private void OnDisable()
     {
-        if (!IsCollected)
-        {
-            ConvertCake();
-        }
-        else
-        {
-            //RemoveFromStack();
-            gameObject.SetActive(false);
-            //Sell process
-        }
-
-        //OnInteract?.Invoke(_isPickedUp, transform);// if OnInteract is null, returns null instead of throwing an exception; otherwise invokes
-    }*/
-
-    private void ConvertCake()
+        DeactivateCake(cakeForm);
+        ActivateCake(1);
+        IsCollected = false;
+    }
+    public void ReturnToObjectPool()
     {
-        //print("converted");
-        //IsTurnedFalse = true;
-        //other.gameObject.SetActive(false);
-        //Instantiate(chocolateCake, other.transform.position, Quaternion.identity, other.transform.parent);
-       // print("convertor enter");
-        if (GameManager.CakeType == CakeType.Choco)//choco
+        gameObject.SetActive(false);
+        
+        //DeactivateCake(cakeForm);
+        //ActivateCake(1);
+        //parent'ýný tekrar object pool yapmak gerekir mi? 
+
+
+    }
+
+
+
+    private void ConvertToSecondForm()
+    {
+        if (GameManager.SelectedCakeType == CakeType.Choco)//choco
         {
-            DeactivateCake(cakeForm);
-            cakeForm++;
-            ActivateCake(cakeForm);
-            //print("chaco converter");
+            cakeForm = 2;
         }
-        else if (GameManager.CakeType == CakeType.Fruit)//fruit
+        else if (GameManager.SelectedCakeType == CakeType.Fruit)//fruit
         {
-            DeactivateCake(cakeForm);
-            if (cakeForm == 1) { cakeForm = 3; }
-            cakeForm++;
-            ActivateCake(cakeForm);
-            //print("fruit converter");
+            cakeForm = 4;
+        }
+    }
+    private void ConvertToThirdFrom()
+    {
+        if (GameManager.SelectedCakeType == CakeType.Choco)//choco
+        {
+            cakeForm = 3;
+        }
+        else if (GameManager.SelectedCakeType == CakeType.Fruit)//fruit
+        {
+            cakeForm = 5;
         }
     }
     private void DeactivateCake(int type)

@@ -13,11 +13,12 @@ public class CakeGathering : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //print("collectedCakeNumber:" + collectedCakeNumber);
-        if (other.CompareTag("Cake"))// && !other.GetComponent<Cake>().IsCollected
+        if (other.CompareTag("Cake") && !other.GetComponent<Cake>().IsCollected)// && !other.GetComponent<Cake>().IsCollected
         {
-            //other.GetComponent<Cake>().IsCollected = true;
+            //eðer cake'i topladýðýmýzý kontrol etmezsem ayný kek iki defa bu triggera düþüyor ve stackte bir boþluk oluyor. tam player box collider'ýn olduðu yerde
+            other.GetComponent<Cake>().IsCollected = true; 
             other.transform.parent = stackParent;
-            other.transform.localPosition = localCakeCollectionPosition + (intervalBetweenCollectedCakes * collectedCakeNumber);
+            other.transform.localPosition = localCakeCollectionPosition;//+ (intervalBetweenCollectedCakes * collectedCakeNumber)
             collectedCakeNumber++;
 
             Cake.OnInteract?.Invoke(true, other.transform);
