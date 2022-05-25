@@ -24,23 +24,27 @@ public class Cake : MonoBehaviour
             DeactivateCake(cakeForm);
             ConvertToSecondForm();
             ActivateCake(cakeForm);
+            MoneyManager.ChangeMoney(15);
         }
         else if (other.CompareTag("SecondConvertor"))
         {
             DeactivateCake(cakeForm);
             ConvertToThirdFrom();
             ActivateCake(cakeForm);
+            MoneyManager.ChangeMoney(15);
         }
         if (other.CompareTag("SellTrigger"))
         {
             ReturnToObjectPool();
             OnInteract?.Invoke(false, transform);//RemoveFromStack; 
+            MoneyManager.ChangeMoney(20);
             // todo: Sell process
         }
         if (other.CompareTag("Obstacle"))
         {
             ReturnToObjectPool();
             OnInteract?.Invoke(false, transform);//RemoveFromStack; 
+            MoneyManager.ChangeMoney(-20);
         }
     }
     private void OnDisable()

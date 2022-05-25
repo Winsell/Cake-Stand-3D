@@ -7,9 +7,12 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     private const string levelIndex = "level";
     private static int levelInfo=0;
+
+    [SerializeField] private GameObject interactiveObjects;
     [Header("Levels Array")]
     [SerializeField] private Level[] levels;
 
+    
     public static int LevelInfo { get => levelInfo; set => levelInfo = value; }
 
     private void Start()
@@ -18,7 +21,7 @@ public class LevelManager : MonoBehaviour
         Player.OnSelectionComplete += CreateConvertors;
 
         LevelInfo = PlayerPrefs.GetInt(levelIndex);
-        CreateLevel(0);
+        CreateLevel(2);
     }
     private void Singelton()
     {
@@ -55,7 +58,8 @@ public class LevelManager : MonoBehaviour
             newCake.transform.position = levels[levelIndex].collectibleCakePositions[i];
             newCake.SetActive(true);
         }
-       
+        Destroy(interactiveObjects);
+        interactiveObjects = Instantiate(levels[levelIndex].interactiveObjectsSet);      
     }
     public void CreateConvertors(int levelIndex, GameObjects convertorType)
     {

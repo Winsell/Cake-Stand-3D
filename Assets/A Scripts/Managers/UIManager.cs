@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [Header("Screens")]
     [SerializeField] private GameObject mainScreen;
     [SerializeField] private GameObject inGameScreen;
     [SerializeField] private GameObject successScreen;
     [SerializeField] private GameObject failScreen;
 
+    [Header("UI Elements")]
+    [SerializeField] private TextMeshProUGUI inGameMoneyText;
     private void Start()
+    {
+        Singelton();
+    }
+
+    private void Singelton()
     {
         if (instance == null)
         {
@@ -22,6 +31,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void StartGame()
     {
         PlayerMovement.instance.transform.position = Vector3.zero;
@@ -44,5 +54,8 @@ public class UIManager : MonoBehaviour
         failScreen.SetActive(true);
         inGameScreen.SetActive(false);
     }
-
+    public void ShowMoneyChangeInGame(int newAmount)
+    {
+        inGameMoneyText.text = newAmount + " $";
+    }
 }

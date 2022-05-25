@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61993ad5c2b1da4b96e0ae9e62d98ec, type: 3}
-  m_Name: Level 2
+  m_Name: Level 3
   m_EditorClassIdentifier: 
   collectibleCakePositions:
   - {x: 1, y: 0, z: 22}
@@ -23,4 +23,4 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 48}
   otherObjectsPositions:
   - {x: -1.4, y: -1, z: 59}
-  interactiveObjectsSet: {fileID: 479940870553196254, guid: 0391a264245606b468ab4cec6d5685db, type: 3}
+  interactiveObjectsSet: {fileID: 3508781276379894403, guid: 550f51abf74bde34d81848c163b8f5e4, type: 3}

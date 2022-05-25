@@ -9,5 +9,7 @@ public class Level : ScriptableObject
     public Vector3[] collectibleCakePositions;
     public Vector3[] otherObjectsPositions;
 
+    public GameObject interactiveObjectsSet;
+
 
 }

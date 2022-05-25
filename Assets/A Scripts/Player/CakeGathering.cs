@@ -22,6 +22,8 @@ public class CakeGathering : MonoBehaviour
             collectedCakeNumber++;
 
             Cake.OnInteract?.Invoke(true, other.transform);
+
+            MoneyManager.ChangeMoney(20);
         }
     }
 }
