@@ -18,12 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private float lastFrameFingerPositionX;
     private float moveFactorX;
 
-    private static Screens gameState;
+    
     public static bool IsPlaying
     {
         get { return isPlaying; } set { isPlaying = value; }
     }
 
+    private static Screens gameState;
     public static Screens GameState { get => gameState; set => gameState = value; }
 
     public static PlayerMovement instance;

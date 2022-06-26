@@ -17,11 +17,6 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] private List<GameObject> pooledCakes;
     [SerializeField] private List<GameObject> pooledFruitConventor;
     [SerializeField] private List<GameObject> pooledChocoConventor;
-    /*
-    [Header("Parent Transforms")]
-    [SerializeField] private Transform cakeParent;
-    [SerializeField] private Transform fruitConvertorParent;
-    [SerializeField] private Transform chocoConvertorParent;*/
     void Awake()
     {
         instance = this;

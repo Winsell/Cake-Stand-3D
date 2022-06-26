@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI inGameMoneyText;
+    [SerializeField] private TextMeshProUGUI levelText;
     private void Start()
     {
         Singelton();
@@ -31,11 +32,12 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void StartGame()
+    public void UpdateLevelText(int level)
     {
-        PlayerMovement.instance.transform.position = Vector3.zero;
-        PlayerMovement.GameState = Screens.InGame;
+        levelText.text = level.ToString();
+    }
+    public void OpenInGameScreen()
+    {
         inGameScreen.SetActive(true);
     }
     public void OpenMainScreen()

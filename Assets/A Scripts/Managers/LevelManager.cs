@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
         Player.OnSelectionComplete += CreateConvertors;
 
         LevelInfo = PlayerPrefs.GetInt(levelIndex);
-        CreateLevel(2);
+        CreateLevel(0);
     }
     private void Singelton()
     {
@@ -43,8 +43,9 @@ public class LevelManager : MonoBehaviour
     public void CreateNextLevel()//call when finish line passed
     {
         ObjectPooler.instance.DeactivateAllPools();
-
+        if(levelInfo == (levels.Length - 1)) { levelInfo = 0; }
         CreateLevel(LevelInfo);
+        UIManager.instance.UpdateLevelText(levelInfo + 1);
         //PlayerMovement.GameState = Screens.InGame;
         
     }
